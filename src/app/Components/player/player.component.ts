@@ -19,27 +19,18 @@ export class PlayerComponent {
   showPlay = true
   avatar = '../../../assets/img/avatar.jpg'
   surahData!: Surah | any
+  ayahsData!: Ayahs[]
   src: string = ''
 
   constructor(private surahService: SurahService, private readersService: ReadersService, private _audioContext: AudioContext) {
-    this.surahService.surahData.subscribe((res: Surah | any) => {
-      this.surahData = res
-      console.log(this.surahData)
+    this.surahService.surahData.subscribe((res: Surah | any) => this.surahData = res)
+    this.surahService.ayahsData.subscribe((res: Ayahs[]) => {
+      this.ayahsData = res
+      for (let index = 0; index < this.ayahsData.length; index++) {
+        this.src = this.ayahsData[0].audio;
+        console.log(this.audioPlayer)
+      }
     })
-  }
-
-  public async play(): Promise<void> {
-    if (this._audioContext.state === 'suspended') {
-      await this._audioContext.resume();
-    }
-
-    const oscillatorNode = this._audioContext.createOscillator();
-
-    oscillatorNode.onended = () => oscillatorNode.disconnect();
-    oscillatorNode.connect(this._audioContext.destination);
-
-    oscillatorNode.start();
-    oscillatorNode.stop(this._audioContext.currentTime + 0.5);
   }
 
   switchPlay() { this.showPlay = !this.showPlay }
@@ -48,8 +39,8 @@ export class PlayerComponent {
     this.audioPlayerRef.nativeElement.addEventListener('timeupdate', (event: any) => {
       this.duration = event.target.duration;
       this.seek = (event.target.currentTime / this.duration) * 100;
-      this.currentTime = this.formatTime(event.target.currentTime);
-      this.durationString = this.formatTime(this.audioPlayer.duration);
+      // this.currentTime = this.formatTime(event.target.currentTime);
+      // this.durationString = this.formatTime(this.audioPlayer.duration);
       if (this.duration == event.target.currentTime) {
         this.switchPlay()
         event.target.currentTime = 0
@@ -70,15 +61,15 @@ export class PlayerComponent {
     this.audioPlayerRef.nativeElement.currentTime = seekTime;
   }
 
-  // play() {
-  //   this.audioPlayerRef.nativeElement.play()
-  //   this.switchPlay()
-  // }
+  play() {
+    this.audioPlayerRef.nativeElement.play()
+    this.switchPlay()
+  }
 
-  // pause() {
-  //   this.audioPlayerRef.nativeElement.pause();
-  //   this.switchPlay()
-  // }
+  pause() {
+    this.audioPlayerRef.nativeElement.pause();
+    this.switchPlay()
+  }
 
   previous() { }
   next() { }

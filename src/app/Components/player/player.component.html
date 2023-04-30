@@ -1,6 +1,5 @@
 <!-- <div id="waveform"></div> -->
 <ng-container>
-    <audio src="{{src}}" #audioPlayer hidden></audio>
     <div class="player">
         <div class="reciter">
             <div class="img">
@@ -15,10 +14,10 @@
             <button (click)="previous()" class="next">
                 <img src="../../../assets/img/skip-back.svg" alt="">
             </button>
-            <button (click)="play()" class="play" *ngIf="showPlay">
+            <!-- <button (click)="play()" class="play" *ngIf="showPlay">
                 <img src="../../../assets/img/play.svg" alt="">
             </button>
-            <!-- <button (click)="pause()" class="pause" *ngIf="!showPlay">
+            <button (click)="pause()" class="pause" *ngIf="!showPlay">
                 <img src="../../../assets/img/pause.svg" alt="">
             </button> -->
             <button (click)="next()" class="next">
@@ -26,13 +25,9 @@
             </button>
         </div>
         <div class="seek">
-            <span>{{currentTime}}</span>
-            <div class="progress">
-                <input type="range" id="range" min="0" max="100" [(ngModel)]="seek" (input)="setSeek($event)">
-                <!-- <label for="range" [ngStyle]="{left: (seek - 2) + '%'}"></label> -->
-                <!-- <span class="progress-bar" [ngStyle]="{width: seek + '%' }"></span> -->
-            </div>
-            <span>{{durationString}}</span>
+            <!-- <span>{{currentTime}}</span> -->
+            <audio src="{{src}}" #audioPlayer controls></audio>
+            <!-- <span>{{durationString}}</span> -->
         </div>
     </div>
 </ng-container>

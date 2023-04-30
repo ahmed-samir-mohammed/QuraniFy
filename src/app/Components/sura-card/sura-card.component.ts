@@ -29,7 +29,7 @@ export class SuraCardComponent implements OnInit {
       this.ayahsData = res.data.ayahs
       this.surahService.changeSurahData(this.surahData)
       this.surahService.changeAyahsData(this.ayahsData)
-      console.log(this.surahData)
+      console.log(this.ayahsData)
     })
     console.log(this.number)
   }

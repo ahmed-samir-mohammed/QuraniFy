@@ -1,7 +1,7 @@
 import { Ayahs, Surah } from 'src/app/Core/Models/Surah';
 import { ReadersService } from './../../Core/Services/Readers/readers.service';
 import { SurahService } from './../../Core/Services/Surah/surah.service';
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { AudioContext } from 'angular-audio-context';
 
 @Component({
@@ -9,7 +9,7 @@ import { AudioContext } from 'angular-audio-context';
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.scss']
 })
-export class PlayerComponent {
+export class PlayerComponent implements OnInit {
   @ViewChild('audioPlayer') audioPlayerRef!: ElementRef;
   audioPlayer!: HTMLAudioElement
   duration: number = 0;
@@ -24,13 +24,14 @@ export class PlayerComponent {
 
   constructor(private surahService: SurahService, private readersService: ReadersService, private _audioContext: AudioContext) {
     this.surahService.surahData.subscribe((res: Surah | any) => this.surahData = res)
-    this.surahService.ayahsData.subscribe((res: Ayahs[]) => {
-      this.ayahsData = res
-      for (let index = 0; index < this.ayahsData.length; index++) {
-        this.src = this.ayahsData[0].audio;
-        console.log(this.audioPlayer)
-      }
-    })
+    this.surahService.ayahsData.subscribe((res: Ayahs[]) => this.ayahsData = res)
+  }
+
+  ngOnInit(): void {
+    for (let index = 0; index < this.ayahsData.length; index++) {
+      this.src = this.ayahsData[0].audio;
+      console.log(this.audioPlayer)
+    }
   }
 
   switchPlay() { this.showPlay = !this.showPlay }
@@ -56,10 +57,10 @@ export class PlayerComponent {
     return minutes + ':' + seconds;
   }
 
-  setSeek(event: any) {
-    const seekTime = (event.target.value / 100) * this.duration;
-    this.audioPlayerRef.nativeElement.currentTime = seekTime;
-  }
+  // setSeek(event: any) {
+  //   const seekTime = (event.target.value / 100) * this.duration;
+  //   this.audioPlayerRef.nativeElement.currentTime = seekTime;
+  // }
 
   play() {
     this.audioPlayerRef.nativeElement.play()
@@ -71,6 +72,16 @@ export class PlayerComponent {
     this.switchPlay()
   }
 
-  previous() { }
-  next() { }
+  previous() {
+    for (let index = 0; index < this.ayahsData.length; index++) {
+      this.src = this.ayahsData[--index].audio;
+      console.log(this.audioPlayer)
+    }
+  }
+  next() {
+    for (let index = 0; index < this.ayahsData.length; index++) {
+      this.src = this.ayahsData[++index].audio;
+      console.log(this.audioPlayer)
+    }
+  }
 }

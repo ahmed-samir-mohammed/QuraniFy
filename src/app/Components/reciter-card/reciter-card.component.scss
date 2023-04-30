@@ -1,0 +1,29 @@
+.card {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 14vw;
+    min-width: 11rem;
+    height: 20vh;
+    border-radius: 1rem;
+    background: #292f49;
+    cursor: pointer;
+    margin-inline-end: 1rem;
+    transition: background .3s ease-in-out;
+    padding: 0.5rem;
+
+    img {
+        width: 5rem;
+    }
+
+    h5 {
+        color: #fff;
+        margin-bottom: 0;
+        text-align: center;
+    }
+
+    &:hover {
+        background-color: #5f6374;
+    }
+}

@@ -1,0 +1,40 @@
+.card {
+    padding-block: 1rem;
+    padding-inline: 1.5rem;
+    margin-bottom: .5rem;
+    border-radius: 1rem;
+    color: #fff;
+    cursor: pointer;
+    background: #292f49;
+
+    &-info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .surah-name {
+            display: flex;
+            align-items: center;
+
+            .img {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-inline-end: 1rem;
+                background: #ffffff24;
+                border-radius: 50%;
+                width: 3rem;
+                height: 3rem;
+                padding-inline-start: 0.1rem;
+
+                img {
+                    width: 1rem;
+                }
+            }
+        }
+
+        .surah-time {
+            color: #ffffff69;
+        }
+    }
+}

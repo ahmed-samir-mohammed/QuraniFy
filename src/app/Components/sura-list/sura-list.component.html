@@ -1,0 +1,7 @@
+<div class="sura-list">
+    <ng-container *ngIf="identifier != ''">
+        <ng-container *ngFor="let item of surahList">
+            <app-sura-card [name]="item.englishName" [number]="item.number"></app-sura-card>
+        </ng-container>
+    </ng-container>
+</div>

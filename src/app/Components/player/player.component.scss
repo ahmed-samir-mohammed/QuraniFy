@@ -1,0 +1,135 @@
+%d_flex {
+    display: flex;
+}
+
+span {
+    @extend %d_flex;
+    color: #fff;
+    margin-inline: 0.5rem;
+    font-size: 14px;
+
+    &:last-of-type {
+        color: #848894;
+    }
+}
+
+.player {
+    @extend %d_flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #292f49;
+    padding-inline: 2rem;
+    height: 100%;
+
+    h5,
+    p {
+        margin: 0;
+    }
+
+    .seek {
+        @extend %d_flex;
+        width: 60vw;
+        background: #ffffff1c;
+        padding: 0.5rem;
+        border-radius: 30rem;
+
+        input[type='range'] {
+            width: 100%;
+            height: 1px;
+        }
+    }
+
+    .reciter {
+        @extend %d_flex;
+        align-items: center;
+
+        .info {
+            h5 {
+                font-size: 1rem;
+                color: #fff;
+            }
+
+            p {
+                font-size: .9rem;
+                color: #4c546b;
+                font-weight: 600;
+            }
+        }
+
+        .img {
+            width: 3rem;
+            height: 3rem;
+            margin-inline-end: 0.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+    }
+}
+
+.progress {
+    position: relative;
+    width: 100%;
+    @extend %d_flex;
+    align-items: center;
+
+    &-bar {
+        position: absolute;
+        left: 0;
+        top: 0;
+        background: linear-gradient(to right, #fc7f73, #ff69a0);
+        height: 1rem;
+        border-radius: 40rem;
+    }
+
+    label[for="range"] {
+        border-radius: 50%;
+        width: 1rem;
+        height: 1rem;
+        top: 0px;
+        position: absolute;
+        background: #ff69a0;
+    }
+
+}
+
+.action {
+    display: flex;
+    margin-inline: 1rem;
+
+    button {
+        border: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-block: 0.5rem;
+        cursor: pointer;
+        background: transparent;
+
+        img {
+            filter: invert(1);
+            opacity: .8;
+        }
+
+        &.play,
+        &.pause {
+            background: #40465d;
+            border-radius: 50%;
+            margin-inline: .5rem;
+        }
+
+        &.play {
+            padding-inline-start: 0.6rem;
+            padding-inline-end: 0.4rem;
+        }
+
+        &.pause {
+            padding-inline: .5rem;
+        }
+    }
+}

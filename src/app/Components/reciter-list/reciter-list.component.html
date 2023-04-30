@@ -1,0 +1,9 @@
+<div class="reciter-list">
+    <h3>Top Readers</h3>
+    <div class="list">
+        <ng-container *ngFor="let item of readerList">
+            <app-reciter-card [name]="item.englishName" [identifier]="item.identifier"></app-reciter-card>
+        </ng-container>
+    </div>
+
+</div>

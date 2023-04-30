@@ -1,0 +1,19 @@
+@use './variable' as var;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;600;700&display=swap');
+
+body {
+    background-color: var.$mainColor;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+}
+
+::-webkit-scrollbar {
+    // width: 5px;
+    background-color: transparent;
+}
+
+::-moz-scrollbar {
+    // width: 5px;
+    background-color: transparent;
+}
